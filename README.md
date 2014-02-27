@@ -1,5 +1,7 @@
 # BOSH Release for mongodb
 
+Very basic installation of mongodb with minimal configuration.
+
 ## Usage
 
 To use this bosh release, first upload it to your bosh:
