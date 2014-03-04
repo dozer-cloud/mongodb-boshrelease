@@ -1,0 +1,13 @@
+# abort script on any command that exit with a non zero value
+set -e
+
+version="2.4.9"
+
+# Mongodb binary Linux build
+tar zxvf mongodb/mongodb-linux-x86_64-2.4.9.tgz
+(
+  cd mongodb-linux-x86_64-2.4.9
+  for x in bin; do
+    cp -a ${x} ${BOSH_INSTALL_TARGET}
+  done
+)

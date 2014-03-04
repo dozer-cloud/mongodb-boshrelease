@@ -1,0 +1,4 @@
+---
+name: mongodb
+files:
+- mongodb/mongodb-linux-x86_64-2.4.9.tgz

@@ -1,5 +1,6 @@
-# Example of how to do one thing when job is master/leader, and another thing if its follower/slave
-# See templates/infrastructure-warden.yml & templates/jobs.yml for where this value originates
-<% if_p("mongodb.leader_address") do |leader_address| %>
-leader: <%= leader_address %>
-<% end %>
+pidfilepath = /var/vcap/sys/run/mongodb
+logpath = /var/vcap/sys/log/mongodb/stdout.log
+dbpath = /var/vcap/store/mongodb/
+port = <%= properties.mongodb.port || 27017 %>
+maxConns = <%= properties.mongodb.max_connections || 500 %>
+noscripting = <%= properties.mongodb.no_scripting || true %>

@@ -1,6 +1,7 @@
 ---
 name: mongodb
-packages: []
+packages:
+  - mongodb
 templates:
   bin/monit_debugger: bin/monit_debugger
   bin/mongodb_ctl: bin/mongodb_ctl
@@ -8,6 +9,14 @@ templates:
   data/properties.sh.erb: data/properties.sh
   helpers/ctl_setup.sh: helpers/ctl_setup.sh
   helpers/ctl_utils.sh: helpers/ctl_utils.sh
+
 properties:
-  mongodb.leader_address:
-    description: Hostname/IP to the leader/master of the cluster
+  mongodb.port:
+    description: TCP port Mongodb listens on
+    default: 27017
+  mongodb.noscripting:
+    description: Set to false if you wish to allow server-side javascript execution
+    default: true
+  mongodb.max_connections:
+    description: maximum amount of connections
+    default: 500
