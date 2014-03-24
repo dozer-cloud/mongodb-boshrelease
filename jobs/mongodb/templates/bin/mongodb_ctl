@@ -6,7 +6,6 @@ set -u # report the usage of uninitialized variables
 # Setup env vars and folders for the webapp_ctl script
 source /var/vcap/jobs/mongodb/helpers/ctl_setup.sh 'mongodb'
 
-export PORT=${PORT:-5000}
 export LANG=en_US.UTF-8
 
 CONFIGFILE=/var/vcap/jobs/mongodb/config/mongodb.conf
@@ -16,19 +15,16 @@ case $1 in
   start)
     pid_guard $PIDFILE $JOB_NAME
 
-    echo $$ > $PIDFILE
-    mongod --config=$CONFIGFILE \
+    mongod --pidfilepath $PIDFILE --config $CONFIGFILE --fork \
        >>$LOG_DIR/$JOB_NAME.stdout.log \
        2>>$LOG_DIR/$JOB_NAME.stderr.log
     ;;
 
   stop)
     kill_and_wait $PIDFILE
-
     ;;
   *)
     echo "Usage: mongodb_ctl {start|stop}"
-
     ;;
 
 esac
